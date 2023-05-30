@@ -9,7 +9,7 @@ import UIKit
 
 class ListItemTableViewCell: UITableViewCell {
     
-    private var cardView = BKSCardView()
+    private var cardView = BKSShadowCard()
     private var horizontalStackView = UIStackView()
     private var verticalStackView = UIStackView()
     private var titleLabel = UILabel()
@@ -43,18 +43,22 @@ class ListItemTableViewCell: UITableViewCell {
 
 //MARK: - VIEW SETUP
 
-extension ListItemTableViewCell {
+fileprivate extension ListItemTableViewCell {
     
     enum Constants {
         static let spacing: CGFloat = 5
         static let margin: CGFloat = 16
+        static let priceTagHeight: CGFloat = 40
+        static let priceTagWidth: CGFloat = 100
+        static let maxDescriptionLength: Int = 50
     }
     
     enum Font {
         static let kern: CGFloat = 0.34
-        static let title = UIFont.systemFont(ofSize: 28, weight: .semibold)
-        static let subtitle = UIFont.systemFont(ofSize: 22, weight: .medium)
+        static let title = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        static let subtitle = UIFont.systemFont(ofSize: 18, weight: .medium)
         static let description = UIFont.systemFont(ofSize: 16, weight: .regular)
+        static let price = UIFont.systemFont(ofSize: 18, weight: .medium)
     }
     
     func setupView() {
@@ -75,14 +79,14 @@ extension ListItemTableViewCell {
         cardView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    fileprivate func setupVerticalStackView() {
+    func setupVerticalStackView() {
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.axis = .vertical
         verticalStackView.spacing = Constants.spacing
         verticalStackView.alignment = .leading
     }
     
-    fileprivate func setupHorizontalStackView() {
+    func setupHorizontalStackView() {
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = Constants.margin
@@ -94,8 +98,9 @@ extension ListItemTableViewCell {
         titleLabel.font = Font.title
         titleLabel.textColor = UIColor.accentColor
         titleLabel.textAlignment = .left
-        titleLabel.numberOfLines = 1
-        titleLabel.text = "#GIRLBOSS"
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.text = "MEET ME AT THE LAKE"
     }
     
     func setupAuthorLabel() {
@@ -103,8 +108,9 @@ extension ListItemTableViewCell {
         authorLabel.font = Font.subtitle
         authorLabel.textColor = UIColor.primaryTextColor
         authorLabel.textAlignment = .left
-        authorLabel.numberOfLines = 1
-        authorLabel.text = "#by Sophia Amoruso"
+        authorLabel.numberOfLines = 0
+        authorLabel.lineBreakMode = .byWordWrapping
+        authorLabel.text = "James Patterson and Maxine Paetro"
     }
     
     func setupDescriptionLabel() {
@@ -114,12 +120,12 @@ extension ListItemTableViewCell {
         descriptionLabel.textAlignment = .justified
         descriptionLabel.numberOfLines = 0
         descriptionLabel.lineBreakMode = .byWordWrapping
-        descriptionLabel.text = "An online fashion retailer traces her path to success."
+        descriptionLabel.text = "A decade after a one-day adventure, Will appears again in Fern’s life at her mother’s lakeside resort.".maxLength(length: Constants.maxDescriptionLength)
     }
     
     func setupPriceLabel() {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.font = Font.subtitle
+        priceLabel.font = Font.price
         priceLabel.textColor = UIColor.white
         priceLabel.textAlignment = .center
         priceLabel.numberOfLines = 1
@@ -168,8 +174,9 @@ extension ListItemTableViewCell {
             verticalStackView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
             verticalStackView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
 
-            priceTag.heightAnchor.constraint(equalToConstant: 50),
+            priceTag.heightAnchor.constraint(equalToConstant: Constants.priceTagHeight),
             priceTag.centerYAnchor.constraint(equalTo: horizontalStackView.centerYAnchor),
+            priceTag.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.priceTagWidth),
 
             priceLabel.leadingAnchor.constraint(equalTo: priceTag.leadingAnchor, constant: Constants.spacing),
             priceLabel.topAnchor.constraint(equalTo: priceTag.topAnchor, constant: Constants.spacing),

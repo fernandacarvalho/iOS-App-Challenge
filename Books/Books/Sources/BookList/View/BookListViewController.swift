@@ -52,6 +52,8 @@ fileprivate extension BookListViewController {
     enum Constants {
         static let estimatedRowHeight: CGFloat = 300
         static let highlightRowHeight: CGFloat = 200
+        static let highlightsHeaderHeight: CGFloat = 100
+        static let listHeaderHeight: CGFloat = 50
     }
     
     func setup() {
@@ -125,4 +127,11 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
      
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        BookListTableViewSection(rawValue: section) == .highlights ? HighlightsHeaderViewCell() : ListItemsHeaderViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return BookListTableViewSection(rawValue: section) == .highlights ? Constants.highlightsHeaderHeight : Constants.listHeaderHeight
+    }
 }

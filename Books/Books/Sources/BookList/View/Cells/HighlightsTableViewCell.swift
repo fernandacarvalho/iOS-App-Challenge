@@ -45,7 +45,7 @@ class HighlightsTableViewCell: UITableViewCell {
 fileprivate extension HighlightsTableViewCell {
     enum Constants {
         static let numberOfHighlights: Int = 5
-        static let pageControlHeight: CGFloat = 20
+        static let pageControlHeight: CGFloat = 30
         static let margin: CGFloat = 32
         static let cellWidth: CGFloat = screenWidth/1.05 - Constants.margin
         static let inset: CGFloat = 16
@@ -65,7 +65,7 @@ fileprivate extension HighlightsTableViewCell {
         )
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellReuseIdentifier.highlightCell.rawValue)
+        collectionView.register(HighlightCollectionViewCell.self, forCellWithReuseIdentifier: CellReuseIdentifier.highlightCell.rawValue)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,7 @@ fileprivate extension HighlightsTableViewCell {
     func setupPageControl() {
         pageControl.numberOfPages = Constants.numberOfHighlights
         pageControl.currentPage = 0
-        pageControl.tintColor = UIColor.white
+        pageControl.tintColor = UIColor.disabledColor
         pageControl.currentPageIndicatorTintColor = UIColor.accentColor
         pageControl.backgroundColor = UIColor.backgroundColor
         pageControl.hidesForSinglePage = true
@@ -113,8 +113,9 @@ extension HighlightsTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellReuseIdentifier.highlightCell.rawValue, for: indexPath)
-        cell.backgroundColor = .accentColor
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellReuseIdentifier.highlightCell.rawValue, for: indexPath) as? HighlightCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         return cell
     }
  

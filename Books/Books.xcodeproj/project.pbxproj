@@ -20,6 +20,11 @@
 		EF3358D82A2521C500220527 /* HighlightsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358D72A2521C500220527 /* HighlightsTableViewCell.swift */; };
 		EF3358DA2A2523BA00220527 /* HighlightsCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358D92A2523BA00220527 /* HighlightsCarouselFlowLayout.swift */; };
 		EF3358DC2A25492600220527 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358DB2A25492600220527 /* ListItemTableViewCell.swift */; };
+		EF3358DF2A25741700220527 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358DE2A25741700220527 /* Book.swift */; };
+		EF3358E12A2577DA00220527 /* BestSellers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E02A2577DA00220527 /* BestSellers.swift */; };
+		EF3358E32A25807C00220527 /* HighlightCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E22A25807C00220527 /* HighlightCollectionViewCell.swift */; };
+		EF3358E52A258B3B00220527 /* HighlightsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */; };
+		EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */; };
 		EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */; };
 		EF460FC82A1D46B100D8F7F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */; };
 		EF460FCB2A1D46B100D8F7F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC92A1D46B100D8F7F1 /* LaunchScreen.storyboard */; };
@@ -63,6 +68,11 @@
 		EF3358D72A2521C500220527 /* HighlightsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsTableViewCell.swift; sourceTree = "<group>"; };
 		EF3358D92A2523BA00220527 /* HighlightsCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		EF3358DB2A25492600220527 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
+		EF3358DE2A25741700220527 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		EF3358E02A2577DA00220527 /* BestSellers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellers.swift; sourceTree = "<group>"; };
+		EF3358E22A25807C00220527 /* HighlightCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCollectionViewCell.swift; sourceTree = "<group>"; };
+		EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsHeaderViewCell.swift; sourceTree = "<group>"; };
+		EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsHeaderViewCell.swift; sourceTree = "<group>"; };
 		EF460FBB2A1D46AE00D8F7F1 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +173,9 @@
 				EF3358D72A2521C500220527 /* HighlightsTableViewCell.swift */,
 				EF3358D92A2523BA00220527 /* HighlightsCarouselFlowLayout.swift */,
 				EF3358DB2A25492600220527 /* ListItemTableViewCell.swift */,
+				EF3358E22A25807C00220527 /* HighlightCollectionViewCell.swift */,
+				EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */,
+				EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -173,6 +186,15 @@
 				EF460FF52A1D8A0400D8F7F1 /* BookListPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		EF3358DD2A25740600220527 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF3358DE2A25741700220527 /* Book.swift */,
+				EF3358E02A2577DA00220527 /* BestSellers.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EF460FB22A1D46AE00D8F7F1 = {
@@ -254,6 +276,7 @@
 		EF460FF12A1D73B700D8F7F1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EF3358DD2A25740600220527 /* Models */,
 				EF3358CD2A21442900220527 /* UIComponents */,
 				EF3358C92A2143BC00220527 /* Navigation */,
 				EF3358CC2A2143FE00220527 /* BookList */,
@@ -392,8 +415,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF3358DF2A25741700220527 /* Book.swift in Sources */,
 				EF3358DA2A2523BA00220527 /* HighlightsCarouselFlowLayout.swift in Sources */,
+				EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */,
 				EF3358CB2A2143E200220527 /* MainNavigationController.swift in Sources */,
+				EF3358E32A25807C00220527 /* HighlightCollectionViewCell.swift in Sources */,
 				EF3358CF2A2145F100220527 /* BKSButon.swift in Sources */,
 				EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */,
 				EF3358C42A213A5C00220527 /* String+Extension.swift in Sources */,
@@ -401,6 +427,8 @@
 				EF3358D82A2521C500220527 /* HighlightsTableViewCell.swift in Sources */,
 				EF3358BF2A2131A700220527 /* ActivityIndicatorView.swift in Sources */,
 				EF3358C62A21401600220527 /* NSObject+Extension.swift in Sources */,
+				EF3358E12A2577DA00220527 /* BestSellers.swift in Sources */,
+				EF3358E52A258B3B00220527 /* HighlightsHeaderViewCell.swift in Sources */,
 				EF3358D12A219BBD00220527 /* GenericPlaceholderView.swift in Sources */,
 				EF460FF62A1D8A0400D8F7F1 /* BookListPresenter.swift in Sources */,
 				EF3358C22A2137F100220527 /* UIColor+Extension.swift in Sources */,
