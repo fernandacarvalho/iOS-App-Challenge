@@ -25,6 +25,7 @@
 		EF3358E32A25807C00220527 /* HighlightCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E22A25807C00220527 /* HighlightCollectionViewCell.swift */; };
 		EF3358E52A258B3B00220527 /* HighlightsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */; };
 		EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */; };
+		EF3358E92A259CAC00220527 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E82A259CAC00220527 /* ImageProvider.swift */; };
 		EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */; };
 		EF460FC82A1D46B100D8F7F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */; };
 		EF460FCB2A1D46B100D8F7F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC92A1D46B100D8F7F1 /* LaunchScreen.storyboard */; };
@@ -73,6 +74,7 @@
 		EF3358E22A25807C00220527 /* HighlightCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCollectionViewCell.swift; sourceTree = "<group>"; };
 		EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsHeaderViewCell.swift; sourceTree = "<group>"; };
 		EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsHeaderViewCell.swift; sourceTree = "<group>"; };
+		EF3358E82A259CAC00220527 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		EF460FBB2A1D46AE00D8F7F1 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				EF3358BC2A21316D00220527 /* ScreenSizes.swift */,
 				EF3358BE2A2131A600220527 /* ActivityIndicatorView.swift */,
+				EF3358E82A259CAC00220527 /* ImageProvider.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */,
 				EF3358CB2A2143E200220527 /* MainNavigationController.swift in Sources */,
 				EF3358E32A25807C00220527 /* HighlightCollectionViewCell.swift in Sources */,
+				EF3358E92A259CAC00220527 /* ImageProvider.swift in Sources */,
 				EF3358CF2A2145F100220527 /* BKSButon.swift in Sources */,
 				EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */,
 				EF3358C42A213A5C00220527 /* String+Extension.swift in Sources */,
