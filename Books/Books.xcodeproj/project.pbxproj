@@ -26,6 +26,13 @@
 		EF3358E52A258B3B00220527 /* HighlightsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */; };
 		EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */; };
 		EF3358E92A259CAC00220527 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358E82A259CAC00220527 /* ImageProvider.swift */; };
+		EF3358EB2A28330800220527 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358EA2A28330800220527 /* MainService.swift */; };
+		EF3358EE2A28404100220527 /* BookListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358ED2A28404100220527 /* BookListService.swift */; };
+		EF3358F02A2E832700220527 /* RequestLogUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358EF2A2E832700220527 /* RequestLogUtil.swift */; };
+		EF3358F22A2E847700220527 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358F12A2E847700220527 /* Date+Extension.swift */; };
+		EF3358F42A2E970C00220527 /* UrlFactoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358F32A2E970C00220527 /* UrlFactoryUtil.swift */; };
+		EF3358FA2A2EBB7700220527 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358F92A2EBB7700220527 /* BaseViewController.swift */; };
+		EF3358FC2A2EBE8000220527 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358FB2A2EBE8000220527 /* LoadingTableViewCell.swift */; };
 		EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */; };
 		EF460FC82A1D46B100D8F7F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */; };
 		EF460FCB2A1D46B100D8F7F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC92A1D46B100D8F7F1 /* LaunchScreen.storyboard */; };
@@ -75,6 +82,13 @@
 		EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsHeaderViewCell.swift; sourceTree = "<group>"; };
 		EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsHeaderViewCell.swift; sourceTree = "<group>"; };
 		EF3358E82A259CAC00220527 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		EF3358EA2A28330800220527 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
+		EF3358ED2A28404100220527 /* BookListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListService.swift; sourceTree = "<group>"; };
+		EF3358EF2A2E832700220527 /* RequestLogUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLogUtil.swift; sourceTree = "<group>"; };
+		EF3358F12A2E847700220527 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		EF3358F32A2E970C00220527 /* UrlFactoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlFactoryUtil.swift; sourceTree = "<group>"; };
+		EF3358F92A2EBB7700220527 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EF3358FB2A2EBE8000220527 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EF460FBB2A1D46AE00D8F7F1 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +134,9 @@
 				EF3358BC2A21316D00220527 /* ScreenSizes.swift */,
 				EF3358BE2A2131A600220527 /* ActivityIndicatorView.swift */,
 				EF3358E82A259CAC00220527 /* ImageProvider.swift */,
+				EF3358EA2A28330800220527 /* MainService.swift */,
+				EF3358EF2A2E832700220527 /* RequestLogUtil.swift */,
+				EF3358F32A2E970C00220527 /* UrlFactoryUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -130,6 +147,7 @@
 				EF3358C12A2137F100220527 /* UIColor+Extension.swift */,
 				EF3358C32A213A5C00220527 /* String+Extension.swift */,
 				EF3358C52A21401600220527 /* NSObject+Extension.swift */,
+				EF3358F12A2E847700220527 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -147,6 +165,7 @@
 			children = (
 				EF3358D42A25216900220527 /* View */,
 				EF3358D62A25217700220527 /* Presenter */,
+				EF3358EC2A28402500220527 /* Service */,
 			);
 			path = BookList;
 			sourceTree = "<group>";
@@ -179,6 +198,7 @@
 				EF3358E22A25807C00220527 /* HighlightCollectionViewCell.swift */,
 				EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */,
 				EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */,
+				EF3358FB2A2EBE8000220527 /* LoadingTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -198,6 +218,33 @@
 				EF3358E02A2577DA00220527 /* BestSellers.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EF3358EC2A28402500220527 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EF3358ED2A28404100220527 /* BookListService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EF3358F72A2EBB5800220527 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				EF3358CD2A21442900220527 /* UIComponents */,
+				EF3358DD2A25740600220527 /* Models */,
+				EF3358F82A2EBB6100220527 /* Base */,
+				EF3358C92A2143BC00220527 /* Navigation */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		EF3358F82A2EBB6100220527 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				EF3358F92A2EBB7700220527 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		EF460FB22A1D46AE00D8F7F1 = {
@@ -279,9 +326,7 @@
 		EF460FF12A1D73B700D8F7F1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				EF3358DD2A25740600220527 /* Models */,
-				EF3358CD2A21442900220527 /* UIComponents */,
-				EF3358C92A2143BC00220527 /* Navigation */,
+				EF3358F72A2EBB5800220527 /* Commons */,
 				EF3358CC2A2143FE00220527 /* BookList */,
 			);
 			path = Sources;
@@ -418,22 +463,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF3358F22A2E847700220527 /* Date+Extension.swift in Sources */,
 				EF3358DF2A25741700220527 /* Book.swift in Sources */,
 				EF3358DA2A2523BA00220527 /* HighlightsCarouselFlowLayout.swift in Sources */,
 				EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */,
+				EF3358EE2A28404100220527 /* BookListService.swift in Sources */,
+				EF3358FA2A2EBB7700220527 /* BaseViewController.swift in Sources */,
 				EF3358CB2A2143E200220527 /* MainNavigationController.swift in Sources */,
 				EF3358E32A25807C00220527 /* HighlightCollectionViewCell.swift in Sources */,
 				EF3358E92A259CAC00220527 /* ImageProvider.swift in Sources */,
 				EF3358CF2A2145F100220527 /* BKSButon.swift in Sources */,
+				EF3358F02A2E832700220527 /* RequestLogUtil.swift in Sources */,
 				EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */,
+				EF3358EB2A28330800220527 /* MainService.swift in Sources */,
 				EF3358C42A213A5C00220527 /* String+Extension.swift in Sources */,
 				EF3358DC2A25492600220527 /* ListItemTableViewCell.swift in Sources */,
+				EF3358F42A2E970C00220527 /* UrlFactoryUtil.swift in Sources */,
 				EF3358D82A2521C500220527 /* HighlightsTableViewCell.swift in Sources */,
 				EF3358BF2A2131A700220527 /* ActivityIndicatorView.swift in Sources */,
 				EF3358C62A21401600220527 /* NSObject+Extension.swift in Sources */,
 				EF3358E12A2577DA00220527 /* BestSellers.swift in Sources */,
 				EF3358E52A258B3B00220527 /* HighlightsHeaderViewCell.swift in Sources */,
 				EF3358D12A219BBD00220527 /* GenericPlaceholderView.swift in Sources */,
+				EF3358FC2A2EBE8000220527 /* LoadingTableViewCell.swift in Sources */,
 				EF460FF62A1D8A0400D8F7F1 /* BookListPresenter.swift in Sources */,
 				EF3358C22A2137F100220527 /* UIColor+Extension.swift in Sources */,
 				EF3358D32A219CCD00220527 /* BKSCardView.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 
 class ListItemsHeaderViewCell: UITableViewCell {
-
+    
     private var verticalStackView = UIStackView()
     private var titleLabel = UILabel()
     
@@ -26,6 +26,7 @@ class ListItemsHeaderViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.selectionStyle = .none
         setupView()
     }
     
@@ -49,7 +50,7 @@ fileprivate extension ListItemsHeaderViewCell {
     }
     
     func setupView() {
-        self.backgroundColor = .backgroundColor
+        self.contentView.backgroundColor = .backgroundColor
         setupStackView()
         setupTitleLabel()
         setupViewHierarchy()

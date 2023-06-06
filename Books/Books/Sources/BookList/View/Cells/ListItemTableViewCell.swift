@@ -39,6 +39,18 @@ class ListItemTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureCell(book: Book) {
+        titleLabel.text = book.title ?? ""
+        authorLabel.text = book.author ?? ""
+        descriptionLabel.text = book.description != nil && !book.description!.isEmpty ? book.description! : "No description available."
+        guard let price = book.price,
+            let value = Double(price) else {
+            priceTag.isHidden = true
+            return
+        }
+        priceLabel.text = value > 0.00 ? "$\(price)" : "Free"
+    }
 }
 
 //MARK: - VIEW SETUP
@@ -100,7 +112,6 @@ fileprivate extension ListItemTableViewCell {
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.text = "MEET ME AT THE LAKE"
     }
     
     func setupAuthorLabel() {
@@ -110,7 +121,6 @@ fileprivate extension ListItemTableViewCell {
         authorLabel.textAlignment = .left
         authorLabel.numberOfLines = 0
         authorLabel.lineBreakMode = .byWordWrapping
-        authorLabel.text = "James Patterson and Maxine Paetro"
     }
     
     func setupDescriptionLabel() {
@@ -120,7 +130,6 @@ fileprivate extension ListItemTableViewCell {
         descriptionLabel.textAlignment = .justified
         descriptionLabel.numberOfLines = 0
         descriptionLabel.lineBreakMode = .byWordWrapping
-        descriptionLabel.text = "A decade after a one-day adventure, Will appears again in Fern’s life at her mother’s lakeside resort.".maxLength(length: Constants.maxDescriptionLength)
     }
     
     func setupPriceLabel() {
@@ -129,7 +138,6 @@ fileprivate extension ListItemTableViewCell {
         priceLabel.textColor = UIColor.white
         priceLabel.textAlignment = .center
         priceLabel.numberOfLines = 1
-        priceLabel.text = "Free"
     }
     
     func setupPriceTag() {
@@ -176,7 +184,7 @@ fileprivate extension ListItemTableViewCell {
 
             priceTag.heightAnchor.constraint(equalToConstant: Constants.priceTagHeight),
             priceTag.centerYAnchor.constraint(equalTo: horizontalStackView.centerYAnchor),
-            priceTag.widthAnchor.constraint(greaterThanOrEqualToConstant: Constants.priceTagWidth),
+            priceTag.widthAnchor.constraint(equalToConstant: Constants.priceTagWidth),
 
             priceLabel.leadingAnchor.constraint(equalTo: priceTag.leadingAnchor, constant: Constants.spacing),
             priceLabel.topAnchor.constraint(equalTo: priceTag.topAnchor, constant: Constants.spacing),

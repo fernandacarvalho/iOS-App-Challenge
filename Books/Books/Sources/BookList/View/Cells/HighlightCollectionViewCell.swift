@@ -20,11 +20,26 @@ class HighlightCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .cardBackgroundColor.withAlphaComponent(0.75)
+        self.contentView.backgroundColor = .clear
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCell(book: Book) {
+        if let url = URL(string: "https://storage.googleapis.com/du-prd/books/images/9780316402781.jpg") {
+            ImageProvider.loadData(url: url) { [weak self] data, error in
+                guard error == nil, data != nil else { return }
+                if let image = UIImage(data: data!) {
+                    DispatchQueue.main.async {
+                        self?.bookImageView.image = image
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -48,7 +63,6 @@ fileprivate extension HighlightCollectionViewCell {
     }
     
     func setupView() {
-        self.backgroundColor = .cardBackgroundColor
         setupImageView()
         setupHorizontalStackView()
         setupVerticalStackView()
@@ -71,6 +85,7 @@ fileprivate extension HighlightCollectionViewCell {
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = Constants.margin
         horizontalStackView.alignment = .center
+        horizontalStackView.backgroundColor = .clear
     }
     
     func setupVerticalStackView() {
@@ -78,6 +93,7 @@ fileprivate extension HighlightCollectionViewCell {
         verticalStackView.axis = .vertical
         verticalStackView.spacing = Constants.spacing
         verticalStackView.alignment = .leading
+        verticalStackView.backgroundColor = .clear
     }
     
     func setupRankLabel() {

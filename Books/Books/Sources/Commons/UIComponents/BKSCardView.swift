@@ -13,7 +13,7 @@ class BKSCardView: UIView {
         override func layoutSubviews() {
             super.layoutSubviews()
     
-            self.backgroundColor = UIColor.cardBackgroundColor.withAlphaComponent(0.45)
+            self.backgroundColor = UIColor.cardBackgroundColor.withAlphaComponent(0.6)
             //self.layer.cornerRadius = 5
         }
 }

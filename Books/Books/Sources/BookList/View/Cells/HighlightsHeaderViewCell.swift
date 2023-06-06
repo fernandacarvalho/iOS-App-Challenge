@@ -27,6 +27,7 @@ class HighlightsHeaderViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.selectionStyle = .none
         setupView()
     }
     
@@ -51,7 +52,7 @@ fileprivate extension HighlightsHeaderViewCell {
     }
     
     func setupView() {
-        self.backgroundColor = .backgroundColor
+        self.contentView.backgroundColor = .backgroundColor
         setupStackView()
         setupTitleLabel()
         setupSubtitleLabel()

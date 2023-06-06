@@ -25,7 +25,8 @@ class HighlightsTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
-        self.backgroundColor = .backgroundColor
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
         setupView()
     }
     
@@ -76,7 +77,7 @@ fileprivate extension HighlightsTableViewCell {
     func setupPageControl() {
         pageControl.numberOfPages = Constants.numberOfHighlights
         pageControl.currentPage = 0
-        pageControl.tintColor = UIColor.disabledColor
+        pageControl.pageIndicatorTintColor = UIColor.primaryTextColor.withAlphaComponent(0.15)
         pageControl.currentPageIndicatorTintColor = UIColor.accentColor
         pageControl.backgroundColor = UIColor.backgroundColor
         pageControl.hidesForSinglePage = true

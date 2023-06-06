@@ -10,6 +10,9 @@ import UIKit
 fileprivate enum CellReuseIdentifier: String {
     case highlightsCell = "HighlightsTableViewCell"
     case listItemCell = "ListItemTableViewCell"
+    case highlightsHeaderView = "HighlightsHeaderView"
+    case listHeaderView = "ListHeaderView"
+    case loadingCell = "LoadingTableViewCell"
 }
 
 enum BookListTableViewSection: Int {
@@ -23,19 +26,21 @@ enum BookListTableViewSection: Int {
     }()
 }
 
-final class BookListViewController: UIViewController {
+final class BookListViewController: BaseViewController {
 
     private var presenter: BookListPresenter!
     private var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter.viewWillDisplayIndex(index: 0)
     }
     
-    init(presenter: BookListPresenter? = BookListPresenter()) {
+    init(presenter: BookListPresenter? = nil) {
         super.init(nibName: nil, bundle: nil)
         
-        self.presenter = presenter
+        self.presenter = presenter ?? BookListPresenter(delegate: self)
         setup()
     }
     
@@ -54,6 +59,7 @@ fileprivate extension BookListViewController {
         static let highlightRowHeight: CGFloat = 200
         static let highlightsHeaderHeight: CGFloat = 100
         static let listHeaderHeight: CGFloat = 50
+        static let listFooterHeight: CGFloat = 70
     }
     
     func setup() {
@@ -70,6 +76,9 @@ fileprivate extension BookListViewController {
         tableView.separatorStyle = .none
         tableView.register(HighlightsTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.highlightsCell.rawValue)
         tableView.register(ListItemTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.listItemCell.rawValue)
+        tableView.register(ListItemsHeaderViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.listHeaderView.rawValue)
+        tableView.register(HighlightsHeaderViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.highlightsHeaderView.rawValue)
+        tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.loadingCell.rawValue)
         tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = Constants.estimatedRowHeight
         tableView.isUserInteractionEnabled = true
@@ -108,13 +117,15 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             return cell
-            
+
         case .items:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.listItemCell.rawValue) as? ListItemTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.listItemCell.rawValue) as? ListItemTableViewCell,
+                  presenter.bestSellers.count > 0 else {
                 return UITableViewCell()
             }
+            cell.configureCell(book: presenter.bestSellers[indexPath.row])
             return cell
-            
+
         case .none:
             return UITableViewCell()
         }
@@ -128,10 +139,55 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
      
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        BookListTableViewSection(rawValue: section) == .highlights ? HighlightsHeaderViewCell() : ListItemsHeaderViewCell()
+        if BookListTableViewSection(rawValue: section) == .highlights {
+            return tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.highlightsHeaderView.rawValue) as? HighlightsHeaderViewCell
+        } else {
+            return tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.listHeaderView.rawValue) as? ListItemsHeaderViewCell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return BookListTableViewSection(rawValue: section) == .highlights ? Constants.highlightsHeaderHeight : Constants.listHeaderHeight
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if BookListTableViewSection(rawValue: section) == .items,
+           presenter.isLoading,
+           let footer = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.loadingCell.rawValue) as? LoadingTableViewCell {
+            return footer
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return BookListTableViewSection(rawValue: section) == .items && presenter.isLoading ? Constants.listFooterHeight : 0
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        print("willDisplayFooterView")
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+        print("didEndDisplayingFooterView")
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            presenter.viewWillDisplayIndex(index: indexPath.row)
+        }
+    }
+}
+
+extension BookListViewController: BookListPresenterDelegate {
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+    
+    func showErrorAlert(error: NetworkError) {
+        self.showSimpleAlert(withTitle: error.message, andMessage: error.localizedDescription)
     }
 }
