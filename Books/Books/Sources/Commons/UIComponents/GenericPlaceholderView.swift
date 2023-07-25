@@ -29,7 +29,8 @@ class GenericPlaceholderView: UIControl {
     // MARK: - Setups
     
     fileprivate func setup() {
-        backgroundColor = .backgroundColor
+        self.backgroundColor = .backgroundColor
+        self.translatesAutoresizingMaskIntoConstraints = false
         setupStackView()
         setupTitleLabel()
         setupSubtitleLabel()
@@ -42,7 +43,7 @@ class GenericPlaceholderView: UIControl {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = Constants.spacing
-        stackView.alignment = .center
+        stackView.alignment = .fill
     }
     
     fileprivate func setupTitleLabel() {
@@ -51,6 +52,7 @@ class GenericPlaceholderView: UIControl {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.textColor = .primaryTextColor
     }
     
     fileprivate func setupSubtitleLabel() {
@@ -59,7 +61,7 @@ class GenericPlaceholderView: UIControl {
         subtitleLabel.numberOfLines = 0
         subtitleLabel.lineBreakMode = .byWordWrapping
         subtitleLabel.textAlignment = .center
-        subtitleLabel.textColor = UIColor.secondaryTextColor
+        subtitleLabel.textColor = .secondaryTextColor
     }
     
     fileprivate func setupButton() {
@@ -77,9 +79,11 @@ class GenericPlaceholderView: UIControl {
     
     fileprivate func setupConstraints() {
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.margin),
+            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -(Constants.margin)),
             stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -(Constants.margin))
+            
+            actionButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
         ])
     }
     
@@ -95,7 +99,7 @@ private extension GenericPlaceholderView {
     enum Constants {
         static let spacing: CGFloat = 24
         static let margin: CGFloat = 50
-        static let buttonHeight: CGFloat = 57
+        static let buttonHeight: CGFloat = 44
     }
     
     enum Font {

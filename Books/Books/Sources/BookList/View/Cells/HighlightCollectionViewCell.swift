@@ -30,7 +30,9 @@ class HighlightCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(book: Book) {
-        if let url = URL(string: "https://storage.googleapis.com/du-prd/books/images/9780316402781.jpg") {
+        bookImageView.image = nil
+        if let imageUrl = book.imageUrl,
+           let url = URL(string: imageUrl) {
             ImageProvider.loadData(url: url) { [weak self] data, error in
                 guard error == nil, data != nil else { return }
                 if let image = UIImage(data: data!) {
@@ -40,6 +42,11 @@ class HighlightCollectionViewCell: UICollectionViewCell {
                 }
             }
         }
+        let rank = book.rank ?? 0
+        rankLabel.text = rank != 0 ? "Top \(rank)" : ""
+        titleLabel.text = book.title ?? ""
+        authorLabel.text = book.author != nil ? "Author: \(book.author!)" : ""
+        publisherLabel.text = book.publisher != nil ? "Publisher: \(book.publisher!)" : ""
     }
 }
 
@@ -102,7 +109,6 @@ fileprivate extension HighlightCollectionViewCell {
         rankLabel.textColor = .accentColor
         rankLabel.textAlignment = .left
         rankLabel.numberOfLines = 1
-        rankLabel.text = "Top 1"
     }
     
     func setupTitleLabel() {
@@ -112,7 +118,6 @@ fileprivate extension HighlightCollectionViewCell {
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 2
         titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.text = "MEET ME AT THE LAKE"
     }
     
     func setupAuthorLabel() {
@@ -122,7 +127,6 @@ fileprivate extension HighlightCollectionViewCell {
         authorLabel.textAlignment = .left
         authorLabel.numberOfLines = 2
         authorLabel.lineBreakMode = .byWordWrapping
-        authorLabel.text = "Author: James Patterson and Maxine Paetro"
     }
     
     func setupPublisherLabel() {
@@ -132,7 +136,6 @@ fileprivate extension HighlightCollectionViewCell {
         publisherLabel.textAlignment = .left
         publisherLabel.numberOfLines = 2
         publisherLabel.lineBreakMode = .byWordWrapping
-        publisherLabel.text = "Publisher: Berkley"
     }
     
     func setupViewHierarchy() {

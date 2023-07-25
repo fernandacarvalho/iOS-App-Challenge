@@ -13,6 +13,7 @@ fileprivate enum CellReuseIdentifier: String {
     case highlightsHeaderView = "HighlightsHeaderView"
     case listHeaderView = "ListHeaderView"
     case loadingCell = "LoadingTableViewCell"
+    case emptyListCell = "EmptyListTableViewCell"
 }
 
 enum BookListTableViewSection: Int {
@@ -35,6 +36,13 @@ final class BookListViewController: BaseViewController {
         super.viewDidLoad()
         
         presenter.viewWillDisplayIndex(index: 0)
+        presenter.getTopFive()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     init(presenter: BookListPresenter? = nil) {
@@ -46,6 +54,11 @@ final class BookListViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func placeholderActionHandler() {
+        super.placeholderActionHandler()
+        
     }
     
 }
@@ -79,8 +92,10 @@ fileprivate extension BookListViewController {
         tableView.register(ListItemsHeaderViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.listHeaderView.rawValue)
         tableView.register(HighlightsHeaderViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.highlightsHeaderView.rawValue)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.loadingCell.rawValue)
+        tableView.register(EmptyListTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifier.emptyListCell.rawValue)
         tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = Constants.estimatedRowHeight
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.isUserInteractionEnabled = true
     }
     
@@ -107,7 +122,11 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfRowsForSection(section: BookListTableViewSection(rawValue: section)!)
+        guard let listSection = BookListTableViewSection(rawValue: section) else { return 0 }
+        if listSection == .highlights {
+            return presenter.numberOfRowsForHighlights()
+        }
+        return presenter.numberOfRowsForList()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,11 +135,19 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.highlightsCell.rawValue) as? HighlightsTableViewCell else {
                 return UITableViewCell()
             }
+            cell.setupCell(books: presenter.topFiveBooks)
             return cell
 
         case .items:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.listItemCell.rawValue) as? ListItemTableViewCell,
-                  presenter.bestSellers.count > 0 else {
+            if presenter.shouldShowEmptyListPlaceholder() {
+                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.emptyListCell.rawValue) as? EmptyListTableViewCell else {
+                    return UITableViewCell()
+                }
+                emptyCell.configureCell(title: presenter.emptyListTitle, delegate: self)
+                return emptyCell
+            }
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.listItemCell.rawValue) as? ListItemTableViewCell else {
                 return UITableViewCell()
             }
             cell.configureCell(book: presenter.bestSellers[indexPath.row])
@@ -134,7 +161,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if BookListTableViewSection(rawValue: indexPath.section) == .highlights {
             return Constants.highlightRowHeight
-        }
+        } 
         return UITableView.automaticDimension
     }
      
@@ -151,8 +178,10 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if BookListTableViewSection(rawValue: section) == .items,
-           presenter.isLoading,
+        if BookListTableViewSection(rawValue: section) == .highlights && presenter.shouldShowLoadingHighlightsCell() {
+            return tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.loadingCell.rawValue) as? LoadingTableViewCell
+            
+        } else if presenter.shouldShowLoadingListCell(),
            let footer = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.loadingCell.rawValue) as? LoadingTableViewCell {
             return footer
         }
@@ -160,15 +189,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return BookListTableViewSection(rawValue: section) == .items && presenter.isLoading ? Constants.listFooterHeight : 0
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        print("willDisplayFooterView")
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
-        print("didEndDisplayingFooterView")
+        return BookListTableViewSection(rawValue: section) == .items && presenter.isLoadingList ? Constants.listFooterHeight : 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -180,14 +201,28 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
             presenter.viewWillDisplayIndex(index: indexPath.row)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+        
+    }
 }
+
+//MARK: - PRESENTER DELEGATE
 
 extension BookListViewController: BookListPresenterDelegate {
     func reloadTableView() {
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
-    func showErrorAlert(error: NetworkError) {
-        self.showSimpleAlert(withTitle: error.message, andMessage: error.localizedDescription)
+    func showPlaceholder(title: String, message: String, btnTitle: String) {
+        self.showPlaceholderView(onView: self.view,title: title, message: message, btnTitle: btnTitle)
+    }
+}
+
+//MARK: - EMPTY LIST DELEGATE
+
+extension BookListViewController: EmptyListTableViewCellDelegate {
+    func actionButtonClicked() {
+        presenter.viewWillDisplayIndex(index: 0)
     }
 }

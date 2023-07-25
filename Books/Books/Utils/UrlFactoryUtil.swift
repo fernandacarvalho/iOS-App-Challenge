@@ -17,5 +17,11 @@ final class UrlFactoryUtil {
             let query = offset > 0 ? "&offset=\(offset)" : ""
             return UrlFactoryUtil.baseUrl + path + "?api-key=\(UrlFactoryUtil.apiKey)" + query
         }
+        
+        class func getTopFiveUrl(date: String) -> String {
+            let path = "/books/v3/lists/overview.json"
+            let query = "&published_date=\(date)"
+            return UrlFactoryUtil.baseUrl + path + "?api-key=\(UrlFactoryUtil.apiKey)" + query
+        }
     }
 }

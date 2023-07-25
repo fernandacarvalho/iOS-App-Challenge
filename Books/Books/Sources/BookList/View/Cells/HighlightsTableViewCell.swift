@@ -15,6 +15,7 @@ class HighlightsTableViewCell: UITableViewCell {
     
     private var collectionView: UICollectionView!
     private var pageControl = UIPageControl()
+    private var topFiveBooks = [Book]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +25,6 @@ class HighlightsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .none
-        self.backgroundColor = .clear
-        self.contentView.backgroundColor = .clear
         setupView()
     }
     
@@ -38,6 +36,11 @@ class HighlightsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupCell(books: [Book]) {
+        self.topFiveBooks = books
+        self.collectionView.reloadData()
     }
 }
 
@@ -53,6 +56,9 @@ fileprivate extension HighlightsTableViewCell {
     }
     
     func setupView() {
+        self.selectionStyle = .none
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
         setupCollectionView()
         setupPageControl()
         setupViewHierarchy()
@@ -64,6 +70,7 @@ fileprivate extension HighlightsTableViewCell {
             frame: CGRect(x: 0, y: 0, width: Constants.cellWidth, height: self.frame.size.height - Constants.pageControlHeight),
             collectionViewLayout:  HighlightsCarouselFlowLayout()
         )
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(HighlightCollectionViewCell.self, forCellWithReuseIdentifier: CellReuseIdentifier.highlightCell.rawValue)
@@ -110,13 +117,15 @@ fileprivate extension HighlightsTableViewCell {
 extension HighlightsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Constants.numberOfHighlights
+        return self.topFiveBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellReuseIdentifier.highlightCell.rawValue, for: indexPath) as? HighlightCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let book = self.topFiveBooks[indexPath.item]
+        cell.setupCell(book: book)
         return cell
     }
  

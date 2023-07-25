@@ -7,9 +7,14 @@
 
 import Foundation
 
+enum DateFormat: String {
+    case yyyyMMddTTHHmmSSSZ = "yyyy-MM-dd'T'HH:mm:ssZ"
+    case yyyyMMdd = "yyyy-MM-dd"
+}
+
 extension Date {
-    func getDateString() -> String {
-        let dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    func getDateString(format: String? = nil) -> String {
+        let dateFormat = format ?? DateFormat.yyyyMMddTTHHmmSSSZ.rawValue
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.setLocalizedDateFormatFromTemplate(dateFormat + " a")
         dateFormatterPrint.amSymbol = ""

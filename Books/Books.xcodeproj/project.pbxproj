@@ -33,6 +33,9 @@
 		EF3358F42A2E970C00220527 /* UrlFactoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358F32A2E970C00220527 /* UrlFactoryUtil.swift */; };
 		EF3358FA2A2EBB7700220527 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358F92A2EBB7700220527 /* BaseViewController.swift */; };
 		EF3358FC2A2EBE8000220527 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358FB2A2EBE8000220527 /* LoadingTableViewCell.swift */; };
+		EF3358FE2A2FECF200220527 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358FD2A2FECF200220527 /* KeychainHelper.swift */; };
+		EF3359002A3027B200220527 /* EmptyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358FF2A3027B200220527 /* EmptyListTableViewCell.swift */; };
+		EF3359082A4BAC1300220527 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3359072A4BAC1300220527 /* TabBarViewController.swift */; };
 		EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */; };
 		EF460FC82A1D46B100D8F7F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */; };
 		EF460FCB2A1D46B100D8F7F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC92A1D46B100D8F7F1 /* LaunchScreen.storyboard */; };
@@ -89,6 +92,9 @@
 		EF3358F32A2E970C00220527 /* UrlFactoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlFactoryUtil.swift; sourceTree = "<group>"; };
 		EF3358F92A2EBB7700220527 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EF3358FB2A2EBE8000220527 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		EF3358FD2A2FECF200220527 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		EF3358FF2A3027B200220527 /* EmptyListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListTableViewCell.swift; sourceTree = "<group>"; };
+		EF3359072A4BAC1300220527 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EF460FBB2A1D46AE00D8F7F1 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 				EF3358EA2A28330800220527 /* MainService.swift */,
 				EF3358EF2A2E832700220527 /* RequestLogUtil.swift */,
 				EF3358F32A2E970C00220527 /* UrlFactoryUtil.swift */,
+				EF3358FD2A2FECF200220527 /* KeychainHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -199,6 +206,7 @@
 				EF3358E42A258B3B00220527 /* HighlightsHeaderViewCell.swift */,
 				EF3358E62A258B8300220527 /* ListItemsHeaderViewCell.swift */,
 				EF3358FB2A2EBE8000220527 /* LoadingTableViewCell.swift */,
+				EF3358FF2A3027B200220527 /* EmptyListTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -245,6 +253,14 @@
 				EF3358F92A2EBB7700220527 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		EF3359062A4BABFC00220527 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				EF3359072A4BAC1300220527 /* TabBarViewController.swift */,
+			);
+			path = Tab;
 			sourceTree = "<group>";
 		};
 		EF460FB22A1D46AE00D8F7F1 = {
@@ -326,6 +342,7 @@
 		EF460FF12A1D73B700D8F7F1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EF3359062A4BABFC00220527 /* Tab */,
 				EF3358F72A2EBB5800220527 /* Commons */,
 				EF3358CC2A2143FE00220527 /* BookList */,
 			);
@@ -465,6 +482,7 @@
 			files = (
 				EF3358F22A2E847700220527 /* Date+Extension.swift in Sources */,
 				EF3358DF2A25741700220527 /* Book.swift in Sources */,
+				EF3358FE2A2FECF200220527 /* KeychainHelper.swift in Sources */,
 				EF3358DA2A2523BA00220527 /* HighlightsCarouselFlowLayout.swift in Sources */,
 				EF3358E72A258B8300220527 /* ListItemsHeaderViewCell.swift in Sources */,
 				EF3358EE2A28404100220527 /* BookListService.swift in Sources */,
@@ -483,6 +501,7 @@
 				EF3358BF2A2131A700220527 /* ActivityIndicatorView.swift in Sources */,
 				EF3358C62A21401600220527 /* NSObject+Extension.swift in Sources */,
 				EF3358E12A2577DA00220527 /* BestSellers.swift in Sources */,
+				EF3359002A3027B200220527 /* EmptyListTableViewCell.swift in Sources */,
 				EF3358E52A258B3B00220527 /* HighlightsHeaderViewCell.swift in Sources */,
 				EF3358D12A219BBD00220527 /* GenericPlaceholderView.swift in Sources */,
 				EF3358FC2A2EBE8000220527 /* LoadingTableViewCell.swift in Sources */,
@@ -491,6 +510,7 @@
 				EF3358D32A219CCD00220527 /* BKSCardView.swift in Sources */,
 				EF3358BD2A21316D00220527 /* ScreenSizes.swift in Sources */,
 				EF460FF32A1D73E300D8F7F1 /* BookListViewController.swift in Sources */,
+				EF3359082A4BAC1300220527 /* TabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

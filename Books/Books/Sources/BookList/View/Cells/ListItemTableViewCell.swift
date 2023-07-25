@@ -32,7 +32,6 @@ class ListItemTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .none
         setupView()
     }
     
@@ -44,6 +43,7 @@ class ListItemTableViewCell: UITableViewCell {
         titleLabel.text = book.title ?? ""
         authorLabel.text = book.author ?? ""
         descriptionLabel.text = book.description != nil && !book.description!.isEmpty ? book.description! : "No description available."
+        descriptionLabel.sizeToFit()
         guard let price = book.price,
             let value = Double(price) else {
             priceTag.isHidden = true
@@ -74,7 +74,8 @@ fileprivate extension ListItemTableViewCell {
     }
     
     func setupView() {
-        self.backgroundColor = .backgroundColor
+        self.selectionStyle = .none
+        self.contentView.backgroundColor = .backgroundColor
         setupCardView()
         setupVerticalStackView()
         setupHorizontalStackView()

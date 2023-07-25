@@ -8,8 +8,8 @@
 import Foundation
 
 struct BestSellers: Codable {
-    var numResults: Int?
-    var results: [Book]?
+    let numResults: Int?
+    let results: [Book]?
     
     enum CodingKeys: String, CodingKey {
         case numResults = "num_results"
@@ -17,24 +17,20 @@ struct BestSellers: Codable {
     }
 }
 
-//struct BestSellersResult: Codable {
-//    var bestSellersDate: String?
-//    var lists: [BestSellersList]?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case bestSellersDate = "bestsellers_date"
-//        case lists = "lists"
-//    }
-//}
-//
-//struct BestSellersList: Codable {
-//    var listId: Int?
-//    var listName: String?
-//    var books: [Book]?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case listId = "list_id"
-//        case listName = "list_name"
-//        case books = "books"
-//    }
-//}
+struct TopFive: Codable {
+    let results: TopFiveResult?
+}
+
+struct TopFiveResult: Codable {
+    let lists: [TopFiveList]?
+}
+
+struct TopFiveList: Codable {
+    let listName: String?
+    let books: [Book]?
+    
+    enum CodingKeys: String, CodingKey {
+        case listName = "list_name"
+        case books = "books"
+    }
+}

@@ -22,10 +22,29 @@ final class BookListService: NSObject {
                 completion(.success(list))
                 
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
                 completion(.failure(error))
             }
         }
 
+    }
+    
+    func getTopFiveList(date: String, completion: @escaping (Result<TopFive, NetworkError>) -> Void) {
+        let networkService = MainService()
+        guard let url = URL(string: UrlFactoryUtil.BookList.getTopFiveUrl(date: date)) else {
+            completion(.failure(.unknownError()))
+            return
+        }
+        
+        networkService.get(url: url) { (result: Result<TopFive, NetworkError>) in
+            switch result {
+            case .success(let success):
+                completion(.success(success))
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(.failure(error))
+            }
+        }
     }
 }

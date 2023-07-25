@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setInitialController() {
         let window = UIWindow()
-        window.rootViewController = BookListViewController()
+        window.rootViewController = TabBarViewController()
         self.window = window
         window.makeKeyAndVisible()
     }

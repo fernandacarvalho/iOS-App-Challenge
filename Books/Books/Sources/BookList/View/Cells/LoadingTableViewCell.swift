@@ -25,12 +25,16 @@ class LoadingTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .none
+        
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        self.activityIndicator.stopAnimating()
     }
 }
 
@@ -41,6 +45,7 @@ fileprivate extension LoadingTableViewCell {
         static let activitySize: CGFloat = 35.0
     }
     func setupView() {
+        self.selectionStyle = .none
         self.contentView.backgroundColor = .backgroundColor
         setupActivityIndicator()
         setupViewHierarchy()
