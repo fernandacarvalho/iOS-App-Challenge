@@ -36,6 +36,8 @@
 		EF3358FE2A2FECF200220527 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358FD2A2FECF200220527 /* KeychainHelper.swift */; };
 		EF3359002A3027B200220527 /* EmptyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3358FF2A3027B200220527 /* EmptyListTableViewCell.swift */; };
 		EF3359082A4BAC1300220527 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3359072A4BAC1300220527 /* TabBarViewController.swift */; };
+		EF3E0C0B2AB293B700E0EE29 /* BookListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3E0C0A2AB293B700E0EE29 /* BookListPresenterTests.swift */; };
+		EF3E0C102AB2983000E0EE29 /* BookingListServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3E0C0F2AB2983000E0EE29 /* BookingListServiceMock.swift */; };
 		EF460FBF2A1D46AE00D8F7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */; };
 		EF460FC82A1D46B100D8F7F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */; };
 		EF460FCB2A1D46B100D8F7F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF460FC92A1D46B100D8F7F1 /* LaunchScreen.storyboard */; };
@@ -43,9 +45,7 @@
 		EF460FE02A1D46B100D8F7F1 /* BooksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FDF2A1D46B100D8F7F1 /* BooksUITests.swift */; };
 		EF460FE22A1D46B100D8F7F1 /* BooksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FE12A1D46B100D8F7F1 /* BooksUITestsLaunchTests.swift */; };
 		EF460FF32A1D73E300D8F7F1 /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FF22A1D73E300D8F7F1 /* BookListViewController.swift */; };
-		EF460FF42A1D73E300D8F7F1 /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FF22A1D73E300D8F7F1 /* BookListViewController.swift */; };
 		EF460FF62A1D8A0400D8F7F1 /* BookListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FF52A1D8A0400D8F7F1 /* BookListPresenter.swift */; };
-		EF460FF72A1D8A0400D8F7F1 /* BookListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF460FF52A1D8A0400D8F7F1 /* BookListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +95,8 @@
 		EF3358FD2A2FECF200220527 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		EF3358FF2A3027B200220527 /* EmptyListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListTableViewCell.swift; sourceTree = "<group>"; };
 		EF3359072A4BAC1300220527 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		EF3E0C0A2AB293B700E0EE29 /* BookListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListPresenterTests.swift; sourceTree = "<group>"; };
+		EF3E0C0F2AB2983000E0EE29 /* BookingListServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListServiceMock.swift; sourceTree = "<group>"; };
 		EF460FBB2A1D46AE00D8F7F1 /* Books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF460FBE2A1D46AE00D8F7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF460FC72A1D46B100D8F7F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -263,6 +265,14 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		EF3E0C0E2AB2965900E0EE29 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				EF3E0C0F2AB2983000E0EE29 /* BookingListServiceMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		EF460FB22A1D46AE00D8F7F1 = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +309,8 @@
 		EF460FD42A1D46B100D8F7F1 /* BooksTests */ = {
 			isa = PBXGroup;
 			children = (
+				EF3E0C0A2AB293B700E0EE29 /* BookListPresenterTests.swift */,
+				EF3E0C0E2AB2965900E0EE29 /* Mock */,
 				EF460FD52A1D46B100D8F7F1 /* BooksTests.swift */,
 			);
 			path = BooksTests;
@@ -519,8 +531,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF460FD62A1D46B100D8F7F1 /* BooksTests.swift in Sources */,
-				EF460FF72A1D8A0400D8F7F1 /* BookListPresenter.swift in Sources */,
-				EF460FF42A1D73E300D8F7F1 /* BookListViewController.swift in Sources */,
+				EF3E0C102AB2983000E0EE29 /* BookingListServiceMock.swift in Sources */,
+				EF3E0C0B2AB293B700E0EE29 /* BookListPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,7 +757,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D56YT45BUR;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.fernandacarvalho.BooksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -765,7 +777,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D56YT45BUR;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.fernandacarvalho.BooksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

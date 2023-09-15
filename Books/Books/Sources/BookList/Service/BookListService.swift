@@ -7,7 +7,12 @@
 
 import Foundation
 
-final class BookListService: NSObject {
+protocol BookListServiceProtocol {
+    func getBookList(offset:Int, completion: @escaping (Result<BestSellers, NetworkError>) -> Void)
+    func getTopFiveList(date: String, completion: @escaping (Result<TopFive, NetworkError>) -> Void)
+}
+
+final class BookListService: BookListServiceProtocol {
     
     func getBookList(offset:Int, completion: @escaping (Result<BestSellers, NetworkError>) -> Void) {
         let networkService = MainService()
